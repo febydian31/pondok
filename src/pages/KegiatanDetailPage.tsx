@@ -10,13 +10,11 @@ const ArticleDetailPage = () => {
   const [relatedKegiatans, setRelatedKegiatans] = useState<Kegiatan[]>([]);
 
   useEffect(() => {
-    // Find the article with the matching ID
     const foundKegiatan = kegiatans.find((a) => a.id === id);
     
     if (foundKegiatan) {
         setKegiatan(foundKegiatan);
       
-      // Find related articles in the same category
       const related = kegiatans
         .filter((a) => a.category === foundKegiatan.category && a.id !== id)
         .slice(0, 3);
@@ -24,7 +22,6 @@ const ArticleDetailPage = () => {
       setRelatedKegiatans(related);
     }
     
-    // Scroll to top when article changes
     window.scrollTo(0, 0);
   }, [id]);
 
