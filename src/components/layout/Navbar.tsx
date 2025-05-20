@@ -37,6 +37,8 @@ const Navbar = () => {
     { title: 'Home', path: '/' },
     { title: 'Profile', path: '/profile' },
     { title: 'Artikel', path: '/articles' },
+    { title: 'Kegiatan', path: '/kegiatan' },
+    { title: 'Prestasi', path: '/prestasi' },
     { title: 'Donatur', path: '/donor' },
     { title: 'Pendaftaran', path: '/registration' },
   ];

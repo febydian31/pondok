@@ -1,0 +1,48 @@
+import { Prestasi } from '../types';
+
+export const prestasis: Prestasi[] = [
+  {
+    id: '1',
+    title: 'test',
+    excerpt: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo autem magnam aliquid architecto vero rem. Delectus aliquid repellendus maiores dolorem minus voluptas itaque voluptatum corrupti rerum, perspiciatis provident iusto? Nihil?',
+    content: 'Full article content here...',
+    image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocjy-yzvNvlnSHmKYTGPJXZ4397AoIPtw50WPP_KhKyEvGOGSmP40YEI7wty7vw_Lhbdc7JNR7RyP-FsxDUsSfBoDQakQe_YEwJsTjJ4C7hrCGlgrGj86E94878zGVijWOx_7Dbj0viT49=s1360-w1360-h1020',
+    date: 'April 15, 2025',
+    author: 'Ustadz Rahmat Ibrahim',
+    category: 'Education',
+    readTime: 6,
+  },
+  {
+    id: '2',
+    title: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, rem!',
+    excerpt: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo autem magnam aliquid architecto vero rem. Delectus aliquid repellendus maiores dolorem minus voluptas itaque voluptatum corrupti rerum, perspiciatis provident iusto? Nihil?',
+    content: 'Full article content here...',
+    image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocjy-yzvNvlnSHmKYTGPJXZ4397AoIPtw50WPP_KhKyEvGOGSmP40YEI7wty7vw_Lhbdc7JNR7RyP-FsxDUsSfBoDQakQe_YEwJsTjJ4C7hrCGlgrGj86E94878zGVijWOx_7Dbj0viT49=s1360-w1360-h1020',
+    date: 'March 28, 2025',
+    author: 'Ustadzah Aisyah Putri',
+    category: 'News',
+    readTime: 4,
+  },
+  {
+    id: '3',
+    title: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, rem!',
+    excerpt: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo autem magnam aliquid architecto vero rem. Delectus aliquid repellendus maiores atis provident iusto? Nihil?',
+    content: 'Full article content here...',
+    image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocjy-yzvNvlnSHmKYTGPJXZ4397AoIPtw50WPP_KhKyEvGOGSmP40YEI7wty7vw_Lhbdc7JNR7RyP-FsxDUsSfBoDQakQe_YEwJsTjJ4C7hrCGlgrGj86E94878zGVijWOx_7Dbj0viT49=s1360-w1360-h1020',
+    date: 'March 10, 2025',
+    author: 'Kyai Haji Ahmad Fauzi',
+    category: 'Education',
+    readTime: 7,
+  },
+  {
+    id: '4',
+    title: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, rem!',
+    excerpt: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo autem magnam aliquid architecto vero rem. Delectus aliquid repellendus maiores dolorem minus voluptas itaque voluptatum corrupti rerum, perspiciatis provident iusto? Nihil?',
+    content: 'Full article content here...',
+    image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocjy-yzvNvlnSHmKYTGPJXZ4397AoIPtw50WPP_KhKyEvGOGSmP40YEI7wty7vw_Lhbdc7JNR7RyP-FsxDUsSfBoDQakQe_YEwJsTjJ4C7hrCGlgrGj86E94878zGVijWOx_7Dbj0viT49=s1360-w1360-h1020',
+    date: 'February 22, 2025',
+    author: 'Admin Staff',
+    category: 'Events',
+    readTime: 5,
+  },
+];

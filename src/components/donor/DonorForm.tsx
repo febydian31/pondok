@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Check } from 'lucide-react';
 
+// import { Link } from 'react-router-dom';
+
 interface FormData {
   name: string;
   email: string;
@@ -51,22 +53,15 @@ const DonorForm = ({ onSubmit }: DonorFormProps) => {
     e.preventDefault();
     onSubmit(formData);
     setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        amount: '',
-        paymentMethod: 'transfer',
-        anonymousDonation: false,
-        message: '',
-      });
-    }, 3000);
+
   };
 
+ 
+  const handleHardRefresh = () => {
+    window.location.href = window.location.href;
+  };
+
+  
   const donationAmounts = ['100,000', '250,000', '500,000', '1,000,000', '5,000,000'];
 
   return (
@@ -93,8 +88,31 @@ const DonorForm = ({ onSubmit }: DonorFormProps) => {
             Terimakasih Sudah Berdonasi
           </h4>
           <p className="text-gray-600">
-          Kedermawanan Anda membantu kami melanjutkan misi pendidikan kami. Konfirmasi telah dikirim ke email Anda dengan rincian donasi.
+          Kedermawanan Anda membantu kami melanjutkan misi pendidikan kami. 
           </p>
+
+          <h4 className="text-2xl font-heading mt-10 font-bold text-gray-900 mb-2">
+            Konfirmasi Donasi
+          </h4>
+          <div className="flex items-center justify-center">
+            <a href="https://wa.me/6289633487327" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300">
+              <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.52 3.48A11.96 11.96 0 0012 0C5.373 0 0 5.373 0 12a11.96 11.96 0 003.48 8.52L0 24l3.48-1.02A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12 0-3.25-1.26-6.37-3.48-8.52zM12 21.75a9.756 9.756 0 01-5.344-1.63l-.384-.289-3.162.927.948-3.083-.27-.398A9.756 9.756 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75zm5.344-7.46l-1.36.645a.547.547 0 01-.575-.13l-.938-.89a.38.38 0 00-.52-.03l-1.22 1.1a4.084 4.084 0 01-1.9-1.9l1.1-1.22a.38.38 0 00-.029-.52l-.9-.93a.55.55 0 01-.14-.57l.63-1.36a.433.433 0 00-.602-.602l-1.233.632a2.087 2.087 0 00-2.87 2.871l.63 1.233a.434.434 0 00.6.16 6.165 6.165 0 003.062 1.381 1.235 1.235 0 001.1-.34l1.043-1.043a.38.38 0 00-.001-.54z"/>
+              </svg>
+              Chat via WhatsApp
+            </a>
+          </div>
+
+          <button
+            onClick={handleHardRefresh}
+            type="button"
+            className=" mt-10 bg-primary-600 hover:bg-primary-700 text-white font-bold px-6 py-3 rounded-md transition-colors"
+          >
+            Kembali ke Form Donasi
+          </button>
+         
+
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className="py-8 px-8">

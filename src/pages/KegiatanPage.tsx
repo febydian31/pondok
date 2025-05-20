@@ -1,32 +1,22 @@
 import { useState } from 'react';
-import ArticleCard from '../components/articles/ArticleCard';
-import Pagination from '../components/articles/Pagination';
-import { articles } from '../data/articlesData';
+import KegiatanCard from '../components/kegiatan/KegiatanCard';
+import { kegiatans } from '../data/kegiatansData';
+import { ArrowRight } from 'lucide-react';
 
 const ARTICLES_PER_PAGE = 6;
 
-const ArticlesPage = () => {
+const KegiatanPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  // Get unique categories
-  const categories = ['All', ...new Set(articles.map(article => article.category))];
+  
+  const filteredKegiatans = activeCategory && activeCategory !== 'All'
+    ? kegiatans.filter(kegiatan => kegiatan.category === activeCategory)
+    : kegiatans;
 
-  // Filter articles by category
-  const filteredArticles = activeCategory && activeCategory !== 'All'
-    ? articles.filter(article => article.category === activeCategory)
-    : articles;
-
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
-  const indexOfLastArticle = currentPage * ARTICLES_PER_PAGE;
-  const indexOfFirstArticle = indexOfLastArticle - ARTICLES_PER_PAGE;
-  const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
-
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const indexOfLastKegiatan = currentPage * ARTICLES_PER_PAGE;
+  const indexOfFirstKegiatan = indexOfLastKegiatan - ARTICLES_PER_PAGE;
+  const currentKegiatans = filteredKegiatans.slice(indexOfFirstKegiatan, indexOfLastKegiatan);
 
   const handleCategoryFilter = (category: string) => {
     setActiveCategory(category === 'All' ? null : category);
@@ -39,17 +29,17 @@ const ArticlesPage = () => {
       <div className="bg-primary-900 text-white py-12 md:py-20">
         <div className="container mx-auto px-4">  
           <h1 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Artikel
+            Kegiatan
           </h1>
-          <p className="text-primary-100 max-w-3xl text-lg">
-            Segala informasi terkini yang ada di pondok pesantren Zuhriyah
-          </p>
+            <p className="text-primary-100 max-w-3xl text-lg">
+            Pondok Pesantren Zuhriyah melaksanakan berbagai kegiatan yang mendukung pembelajaran dan pengembangan spiritual santri, seperti pengajian, doa bersama, dan kegiatan sosial. Kegiatan ini bertujuan untuk memperkuat iman dan meningkatkan kualitas pendidikan di lingkungan pesantren
+            </p>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
         {/* Category Filters */}
-        <div className="mb-8 flex flex-wrap gap-2">
+        {/* <div className="mb-8 flex flex-wrap gap-2">
           {categories.map((category) => (
             <button
               key={category}
@@ -63,39 +53,46 @@ const ArticlesPage = () => {
               {category}
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentArticles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {currentKegiatans.map((kegiatan) => (
+            <KegiatanCard key={kegiatan.id} kegiatan  ={kegiatan} />
           ))}
         </div>
 
+
+        <a className="mt-4 flex items-center justify-center mt-5 text-primary-700 hover:text-primary-800 font-medium">
+          Lihat Semua Kegiatan
+          <ArrowRight size={18} className="ml-2" />
+        </a>
+
+
         {/* Empty State */}
-        {currentArticles.length === 0 && (
+        {currentKegiatans.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg mb-4">tidak ada artikel di temukan di kategori ini.</p>
+            <p className="text-gray-500 text-lg mb-4">tidak ada Kegiatan di temukan di kategori ini.</p>
             <button
               onClick={() => handleCategoryFilter('All')}
               className="px-4 py-2 bg-primary-600 text-white rounded-md"
             >
-              Lihat semua Artikel
+              Lihat Semua Kegiatan
             </button>
           </div>
         )}
 
         {/* Pagination */}
-        {filteredArticles.length > ARTICLES_PER_PAGE && (
+        {/* {filteredArticles.length > ARTICLES_PER_PAGE && (
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
-        )}
+        )} */}
       </div>
     </div>
   );
 };
 
-export default ArticlesPage;
+export default KegiatanPage;

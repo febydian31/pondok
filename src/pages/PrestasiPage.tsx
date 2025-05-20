@@ -1,32 +1,33 @@
 import { useState } from 'react';
-import ArticleCard from '../components/articles/ArticleCard';
-import Pagination from '../components/articles/Pagination';
-import { articles } from '../data/articlesData';
+import PrestasiCard from '../components/prestasi/PrestasiCard';
+// import Pagination from '../components/articles/Pagination';
+import { prestasis } from '../data/prestasiData';
+import { ArrowRight } from 'lucide-react';
 
 const ARTICLES_PER_PAGE = 6;
 
-const ArticlesPage = () => {
+const PrestasiPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   // Get unique categories
-  const categories = ['All', ...new Set(articles.map(article => article.category))];
+  // const categories = ['All', ...new Set(kegiatans.map(kegiatan => kegiatan.category))];
 
   // Filter articles by category
   const filteredArticles = activeCategory && activeCategory !== 'All'
-    ? articles.filter(article => article.category === activeCategory)
-    : articles;
+    ? prestasis.filter(prestasis => prestasis.category === activeCategory)
+    : prestasis;
 
   // Calculate pagination
-  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+  // const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
   const indexOfLastArticle = currentPage * ARTICLES_PER_PAGE;
   const indexOfFirstArticle = indexOfLastArticle - ARTICLES_PER_PAGE;
   const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
 
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // const handlePageChange = (pageNumber: number) => {
+  //   setCurrentPage(pageNumber);
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // };
 
   const handleCategoryFilter = (category: string) => {
     setActiveCategory(category === 'All' ? null : category);
@@ -39,38 +40,30 @@ const ArticlesPage = () => {
       <div className="bg-primary-900 text-white py-12 md:py-20">
         <div className="container mx-auto px-4">  
           <h1 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Artikel
+            Prestasi
           </h1>
-          <p className="text-primary-100 max-w-3xl text-lg">
-            Segala informasi terkini yang ada di pondok pesantren Zuhriyah
-          </p>
+            <p className="text-primary-100 max-w-3xl text-lg">
+            Prestasi yang ada di Pondok Pesantren Zuhriyah
+            </p>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        {/* Category Filters */}
-        <div className="mb-8 flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleCategoryFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                (category === 'All' && !activeCategory) || category === activeCategory
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+       
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentArticles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {currentArticles.map((prestasi) => (
+            <PrestasiCard key={prestasi.id} prestasi  ={prestasi} />
           ))}
         </div>
+
+
+        <a className="mt-4 flex items-center justify-center mt-5 text-primary-700 hover:text-primary-800 font-medium">
+          Lihat Semua Prestasi
+          <ArrowRight size={18} className="ml-2" />
+        </a>
+
 
         {/* Empty State */}
         {currentArticles.length === 0 && (
@@ -80,22 +73,22 @@ const ArticlesPage = () => {
               onClick={() => handleCategoryFilter('All')}
               className="px-4 py-2 bg-primary-600 text-white rounded-md"
             >
-              Lihat semua Artikel
+              View All Articles
             </button>
           </div>
         )}
 
         {/* Pagination */}
-        {filteredArticles.length > ARTICLES_PER_PAGE && (
+        {/* {filteredArticles.length > ARTICLES_PER_PAGE && (
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
-        )}
+        )} */}
       </div>
     </div>
   );
 };
 
-export default ArticlesPage;
+export default PrestasiPage;
